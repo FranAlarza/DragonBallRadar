@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="DragonBallAdvanced" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="2rk-Kg-Fr3" id="Ub1-dY-5MV"/>
+                <outlet property="loginButton" destination="DhJ-CI-ITA" id="rWw-wZ-Oqt"/>
+                <outlet property="passwordTextField" destination="swQ-04-0FT" id="obO-oJ-Xkj"/>
+                <outlet property="usernameTextField" destination="6p7-v9-PK9" id="Ggx-a4-CRb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fondo-Goku" translatesAutoresizingMaskIntoConstraints="NO" id="taY-LH-5Ic">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6p7-v9-PK9">
+                    <rect key="frame" x="60" y="391" width="294" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="swQ-04-0FT">
+                    <rect key="frame" x="60" y="465" width="294" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhJ-CI-ITA">
+                    <rect key="frame" x="132" y="574" width="150" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="qRs-dz-eNn"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Login">
+                        <backgroundConfiguration key="background" cornerRadius="8"/>
+                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <color key="baseBackgroundColor" systemColor="systemOrangeColor"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didLoginTap:" destination="-1" eventType="touchUpInside" id="V2l-FA-uzk"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2rk-Kg-Fr3">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" systemColor="systemOrangeColor"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="swQ-04-0FT" firstAttribute="centerX" secondItem="6p7-v9-PK9" secondAttribute="centerX" id="1me-Qx-JSv"/>
+                <constraint firstItem="DhJ-CI-ITA" firstAttribute="centerX" secondItem="swQ-04-0FT" secondAttribute="centerX" id="3nS-cl-Xuy"/>
+                <constraint firstItem="taY-LH-5Ic" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="CYZ-0O-uSW"/>
+                <constraint firstItem="swQ-04-0FT" firstAttribute="top" secondItem="6p7-v9-PK9" secondAttribute="bottom" constant="40" id="D70-yH-grJ"/>
+                <constraint firstItem="6p7-v9-PK9" firstAttribute="centerX" secondItem="taY-LH-5Ic" secondAttribute="centerX" id="GFH-KU-QRq"/>
+                <constraint firstItem="2rk-Kg-Fr3" firstAttribute="centerX" secondItem="taY-LH-5Ic" secondAttribute="centerX" id="GU0-0m-DTc"/>
+                <constraint firstItem="swQ-04-0FT" firstAttribute="leading" secondItem="6p7-v9-PK9" secondAttribute="leading" id="Jyu-tG-k75"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DhJ-CI-ITA" secondAttribute="bottom" constant="250" id="Rdt-St-7G9"/>
+                <constraint firstItem="DhJ-CI-ITA" firstAttribute="top" secondItem="swQ-04-0FT" secondAttribute="bottom" constant="75" id="T75-lW-Ig7"/>
+                <constraint firstItem="taY-LH-5Ic" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UYx-H6-n0C"/>
+                <constraint firstItem="6p7-v9-PK9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="YGr-KR-0Jd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6p7-v9-PK9" secondAttribute="trailing" constant="60" id="cum-g0-SE4"/>
+                <constraint firstItem="taY-LH-5Ic" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hGx-qD-HxJ"/>
+                <constraint firstItem="swQ-04-0FT" firstAttribute="trailing" secondItem="6p7-v9-PK9" secondAttribute="trailing" id="iQG-rX-G9m"/>
+                <constraint firstItem="2rk-Kg-Fr3" firstAttribute="centerY" secondItem="taY-LH-5Ic" secondAttribute="centerY" id="mzg-Lt-GJS"/>
+                <constraint firstAttribute="bottom" secondItem="taY-LH-5Ic" secondAttribute="bottom" id="old-jk-Y45"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Fondo-Goku" width="461" height="1024"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
