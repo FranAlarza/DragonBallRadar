@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="DragonBallAdvanced" customModuleProvider="target">
+            <connections>
+                <outlet property="heroDescription" destination="QpS-ol-Gy7" id="VmD-A2-9gt"/>
+                <outlet property="heroImage" destination="GA7-3R-OWJ" id="0qt-wH-Tdt"/>
+                <outlet property="heroMap" destination="87f-aW-HqN" id="B5L-vv-Iv4"/>
+                <outlet property="heroName" destination="43C-xe-Avg" id="xcO-bW-uYC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aU3-cN-L3v" customClass="CustomView" customModule="DragonBallAdvanced" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="350"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GA7-3R-OWJ">
+                            <rect key="frame" x="120" y="100" width="150" height="150"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="7V9-Nw-abb"/>
+                                <constraint firstAttribute="height" constant="150" id="VIa-jl-t0J"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43C-xe-Avg">
+                            <rect key="frame" x="50" y="275" width="290" height="23"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="43C-xe-Avg" firstAttribute="top" secondItem="GA7-3R-OWJ" secondAttribute="bottom" constant="25" id="4p1-rl-Y2k"/>
+                        <constraint firstItem="GA7-3R-OWJ" firstAttribute="centerX" secondItem="aU3-cN-L3v" secondAttribute="centerX" id="8o4-tp-E7C"/>
+                        <constraint firstAttribute="trailing" secondItem="43C-xe-Avg" secondAttribute="trailing" constant="50" id="HvJ-cQ-xD4"/>
+                        <constraint firstItem="43C-xe-Avg" firstAttribute="leading" secondItem="aU3-cN-L3v" secondAttribute="leading" constant="50" id="fHP-pk-paV"/>
+                        <constraint firstAttribute="height" constant="350" id="gkK-7W-31J"/>
+                        <constraint firstItem="GA7-3R-OWJ" firstAttribute="centerY" secondItem="aU3-cN-L3v" secondAttribute="centerY" id="zgJ-ao-jSP"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBJ-mT-Q4L" userLabel="DescriptionView" customClass="CustomView" customModule="DragonBallAdvanced" customModuleProvider="target">
+                    <rect key="frame" x="20" y="390" width="350" height="38"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpS-ol-Gy7">
+                            <rect key="frame" x="10" y="10" width="330" height="18"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="QpS-ol-Gy7" firstAttribute="leading" secondItem="ZBJ-mT-Q4L" secondAttribute="leading" constant="10" id="XWE-ho-Kh4"/>
+                        <constraint firstItem="QpS-ol-Gy7" firstAttribute="top" secondItem="ZBJ-mT-Q4L" secondAttribute="top" constant="10" id="eOh-Vn-hK2"/>
+                        <constraint firstAttribute="trailing" secondItem="QpS-ol-Gy7" secondAttribute="trailing" constant="10" id="w4c-6r-KRW"/>
+                        <constraint firstAttribute="bottom" secondItem="QpS-ol-Gy7" secondAttribute="bottom" constant="10" id="zgf-e3-uzw"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgW-qS-dSV" customClass="CustomView" customModule="DragonBallAdvanced" customModuleProvider="target">
+                    <rect key="frame" x="20" y="468" width="350" height="292"/>
+                    <subviews>
+                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87f-aW-HqN">
+                            <rect key="frame" x="0.0" y="0.0" width="350" height="292"/>
+                            <standardMapConfiguration key="preferredConfiguration"/>
+                        </mapView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="87f-aW-HqN" secondAttribute="trailing" id="5rG-Ru-AoY"/>
+                        <constraint firstItem="87f-aW-HqN" firstAttribute="leading" secondItem="PgW-qS-dSV" secondAttribute="leading" id="KSC-ge-ACY"/>
+                        <constraint firstItem="87f-aW-HqN" firstAttribute="top" secondItem="PgW-qS-dSV" secondAttribute="top" id="TqT-xl-7QS"/>
+                        <constraint firstAttribute="bottom" secondItem="87f-aW-HqN" secondAttribute="bottom" id="xn4-Y1-U5U"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PgW-qS-dSV" firstAttribute="centerX" secondItem="ZBJ-mT-Q4L" secondAttribute="centerX" id="34Z-uf-7TD"/>
+                <constraint firstItem="aU3-cN-L3v" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="66m-V8-AJh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aU3-cN-L3v" secondAttribute="trailing" id="6zc-28-8dU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZBJ-mT-Q4L" secondAttribute="trailing" constant="20" id="7ai-y8-7zL"/>
+                <constraint firstItem="ZBJ-mT-Q4L" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Aq6-b0-egZ"/>
+                <constraint firstItem="ZBJ-mT-Q4L" firstAttribute="top" secondItem="aU3-cN-L3v" secondAttribute="bottom" constant="40" id="GvC-QG-0hz"/>
+                <constraint firstItem="QpS-ol-Gy7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="MEs-5m-VsO"/>
+                <constraint firstItem="PgW-qS-dSV" firstAttribute="width" secondItem="ZBJ-mT-Q4L" secondAttribute="width" id="PI4-kM-Fbk"/>
+                <constraint firstItem="PgW-qS-dSV" firstAttribute="top" secondItem="ZBJ-mT-Q4L" secondAttribute="bottom" constant="40" id="TSn-4C-dhT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PgW-qS-dSV" secondAttribute="bottom" constant="50" id="agZ-7g-pbZ"/>
+                <constraint firstItem="aU3-cN-L3v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qvC-fa-3T3"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

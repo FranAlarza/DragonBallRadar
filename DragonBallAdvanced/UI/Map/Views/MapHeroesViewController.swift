@@ -11,10 +11,10 @@ import CoreLocation
 
 protocol MapHeroesProtocol: AnyObject {
     func showUserLocation()
-    func createPointAnnotation(heroName: String, latitud: Double, longitud: Double)
+    func createPointAnnotation(with model: PersistenceHeros)
 }
 
-class MapHeroesViewController: UIViewController{
+class MapHeroesViewController: UIViewController {
     
     // MARK: - IBOUTLETS
     @IBOutlet weak var heroMap: MKMapView!
@@ -25,17 +25,17 @@ class MapHeroesViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.getCharacters()
-        viewModel?.fetchHeroesFromCoreData()
+        self.title = "Heroes Map"
         showUserLocation()
+        viewModel?.getCharacters()
+        viewModel?.onViewsLoaded()
+        heroMap.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.putHeroInMap()
     }
-
-
 }
 
 extension MapHeroesViewController: MapHeroesProtocol {
@@ -46,10 +46,42 @@ extension MapHeroesViewController: MapHeroesProtocol {
         heroMap.showsUserLocation = true
     }
     
-    func createPointAnnotation(heroName: String, latitud: Double, longitud: Double) {
-        let characterLocation = MKPointAnnotation()
-        characterLocation.title = heroName
-        characterLocation.coordinate = CLLocationCoordinate2D(latitude: latitud, longitude: longitud)
+    func createPointAnnotation(with model: PersistenceHeros) {
+        let characterLocation = CustomMKAnnotation(title: model.name ?? "",
+                                                   coordenates: CLLocationCoordinate2D(latitude: model.latitud, longitude: model.longitud),
+                                                   descriptionHero: model.descripcion ?? "",
+                                                   photo: model.photo ?? "")
         heroMap.addAnnotation(characterLocation)
+    }
+}
+
+extension MapHeroesViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is CustomMKAnnotation else { return nil }
+        
+        let identifier = "custom"
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = btn
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let annotation = view.annotation as? CustomMKAnnotation else { return }
+        let nextVC = DetailViewController()
+        nextVC.annotation = annotation
+        navigationController?.pushViewController(nextVC, animated: true)
+        view.setSelected(false, animated: true)
     }
 }

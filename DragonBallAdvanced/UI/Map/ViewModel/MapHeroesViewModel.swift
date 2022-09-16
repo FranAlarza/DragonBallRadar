@@ -8,6 +8,7 @@
 import Foundation
 
 protocol MapHeroesViewModelProtocol {
+    func onViewsLoaded()
     func getCharacters()
     func fetchHeroesFromCoreData()
     func putHeroInMap()
@@ -36,6 +37,10 @@ class MapHeroesViewModel {
 
 extension MapHeroesViewModel: MapHeroesViewModelProtocol {
     
+    func onViewsLoaded() {
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchHeroesFromCoreData), name: .heroesStoredInCoreData, object: nil)
+    }
+    
     func getCharacters() {
         let token = getPersistenceToken()
         networkManager.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
@@ -59,6 +64,7 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
                         heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
                         DispatchQueue.main.async {
                             CoreDataManager.shared.saveHeroes(with: heroes[index])
+                            NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
                         }
                     }
                 }
@@ -67,12 +73,12 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
         
     }
     
-    func fetchHeroesFromCoreData() {
+    @objc func fetchHeroesFromCoreData() {
         CoreDataManager.shared.fetchHeroes { result in
             switch result {
             case .success(let heroes):
-                print(heroes)
                 self.persistanceHeroes = heroes ?? []
+                putHeroInMap()
             case .failure(let error):
                 print("\(error)")
             }
@@ -82,9 +88,7 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
     func putHeroInMap() {
         persistanceHeroes.forEach { persistanceHero in
             if persistanceHero.latitud != 0.0 && persistanceHero.longitud != 0.0 {
-                delegate?.createPointAnnotation(heroName: persistanceHero.name ?? "Undefined",
-                                                latitud: persistanceHero.latitud,
-                                                longitud: persistanceHero.longitud)
+                delegate?.createPointAnnotation(with: persistanceHero)
             }
         }
     }

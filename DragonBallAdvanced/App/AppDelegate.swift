@@ -56,9 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  Check the error message to determine what the actual problem was.
                  */
                 
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                
             }
-            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+            //container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         })
         return container
     }()

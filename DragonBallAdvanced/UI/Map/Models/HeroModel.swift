@@ -8,9 +8,9 @@
 import Foundation
 
 struct Hero: Decodable {
-    let description, name, id: String
-    let photo: URL
-    let favorite: Bool
+    let description, name, id: String?
+    let photo: URL?
+    let favorite: Bool?
     var latitud: Double?
     var longitud: Double?
 }

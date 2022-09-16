@@ -24,8 +24,8 @@ class CoreDataManager {
         heroItem.name = modelHero.name
         heroItem.id = modelHero.id
         heroItem.descripcion = modelHero.description
-        heroItem.favourite = modelHero.favorite
-        heroItem.photo = modelHero.photo.absoluteString
+        heroItem.favourite = modelHero.favorite ?? false
+        heroItem.photo = modelHero.photo?.absoluteString
         heroItem.latitud = modelHero.latitud ?? 0.0
         heroItem.longitud = modelHero.longitud ?? 0.0
         
