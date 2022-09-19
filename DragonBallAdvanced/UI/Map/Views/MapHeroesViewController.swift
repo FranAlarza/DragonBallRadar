@@ -18,6 +18,7 @@ class MapHeroesViewController: UIViewController {
     
     // MARK: - IBOUTLETS
     @IBOutlet weak var heroMap: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - VARIABLES
     var viewModel: MapHeroesViewModelProtocol?
@@ -25,7 +26,6 @@ class MapHeroesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Heroes Map"
         showUserLocation()
         viewModel?.getCharacters()
         viewModel?.onViewsLoaded()
@@ -34,7 +34,7 @@ class MapHeroesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.putHeroInMap()
+        
     }
 }
 

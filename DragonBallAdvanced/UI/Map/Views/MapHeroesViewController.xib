@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapHeroesViewController" customModule="DragonBallAdvanced" customModuleProvider="target">
             <connections>
                 <outlet property="heroMap" destination="YKo-5D-Fm7" id="mPe-Ne-xAO"/>
+                <outlet property="searchBar" destination="urH-S4-oex" id="hmT-9w-CMg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,17 +21,33 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YKo-5D-Fm7">
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YKo-5D-Fm7">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </mapView>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="urH-S4-oex">
+                    <rect key="frame" x="20" y="23" width="374" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="KEO-f8-ZjQ"/>
+                    </constraints>
+                    <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="N4h-GH-cvc"/>
+                    </connections>
+                </searchBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="urH-S4-oex" secondAttribute="trailing" constant="20" id="7kS-Rr-BqM"/>
                 <constraint firstAttribute="trailing" secondItem="YKo-5D-Fm7" secondAttribute="trailing" id="87Q-i0-klR"/>
-                <constraint firstItem="YKo-5D-Fm7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="L0M-Uw-a5o"/>
+                <constraint firstItem="urH-S4-oex" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NBO-0G-KQi"/>
                 <constraint firstItem="YKo-5D-Fm7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="U6w-h8-B6e"/>
+                <constraint firstItem="urH-S4-oex" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-25" id="VHv-bV-uYG"/>
+                <constraint firstItem="urH-S4-oex" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="dIJ-FZ-gVs"/>
+                <constraint firstItem="YKo-5D-Fm7" firstAttribute="centerX" secondItem="urH-S4-oex" secondAttribute="centerX" id="h2u-tr-Rva"/>
                 <constraint firstAttribute="bottom" secondItem="YKo-5D-Fm7" secondAttribute="bottom" id="pRu-WW-GYb"/>
+                <constraint firstItem="YKo-5D-Fm7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yLg-u3-Mjt"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
         </view>

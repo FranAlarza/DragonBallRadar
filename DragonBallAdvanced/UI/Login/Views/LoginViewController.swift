@@ -43,7 +43,6 @@ class LoginViewController: UIViewController {
               let password = passwordTextField.text else { return }
         if user.isValidEmail && !password.isEmpty {
             viewModel?.getTokenAccess(user: user, password: password)
-            viewModel?.checkForToken(account: user, service: "Token")
             activityIndicator.stopAnimating()
         } else {
             activityIndicator.stopAnimating()
@@ -59,7 +58,7 @@ extension LoginViewController: LoginViewControllerProtocol {
         rootVC.viewModel = MapHeroesViewModel(delegate: rootVC)
         let navController = UINavigationController(rootViewController: rootVC)
         navController.modalPresentationStyle = .fullScreen
-        navController.modalTransitionStyle = .partialCurl
+        navController.modalTransitionStyle = .flipHorizontal
         present(navController, animated: true)
     }
 }
