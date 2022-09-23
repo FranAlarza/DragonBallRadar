@@ -18,18 +18,22 @@ class MapHeroesViewController: UIViewController {
     
     // MARK: - IBOUTLETS
     @IBOutlet weak var heroMap: MKMapView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - VARIABLES
     var viewModel: MapHeroesViewModelProtocol?
+    
+    // MARK: - CONSTANTS
     let locationManager = CLLocationManager()
+    let searchController = UISearchController(searchResultsController: SearchResultsViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.searchController = searchController
         showUserLocation()
         viewModel?.getCharacters()
         viewModel?.onViewsLoaded()
         heroMap.delegate = self
+        searchController.searchResultsUpdater = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,5 +87,15 @@ extension MapHeroesViewController: MKMapViewDelegate {
         nextVC.annotation = annotation
         navigationController?.pushViewController(nextVC, animated: true)
         view.setSelected(false, animated: true)
+    }
+}
+
+extension MapHeroesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        let predicate = NSPredicate(format: "name CONTAINS %@", text)
+        guard let resultController = searchController.searchResultsController as? SearchResultsViewController else { return }
+        resultController.viewModel = SearchResultsViewModel(delegate: resultController)
+        resultController.viewModel?.fetchResultHeroes(with: predicate)
     }
 }

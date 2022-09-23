@@ -31,9 +31,10 @@ extension LoginViewModel: loginViewModelProtocol {
     }
     
     func getTokenAccess(user: String, password: String) {
-        networkManager.login(name: user, password: password) { token, error in
+        networkManager.login(name: user, password: password) { [weak self] token, error in
             guard let dataToken = token?.data(using: .utf8) else { return }
             keyChainHelper.standard.save(dataToken, service: "Token", account: "\(user)")
+            self?.checkForToken(account: "\(user)", service: "Token")
         }
     }
     
@@ -42,7 +43,9 @@ extension LoginViewModel: loginViewModelProtocol {
               let token = String(data: tokenData, encoding: .utf8) else { return }
         
         if !token.isEmpty {
-            delegate?.navigateToMapView()
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.navigateToMapView()
+            }
         } else {
             return
         }

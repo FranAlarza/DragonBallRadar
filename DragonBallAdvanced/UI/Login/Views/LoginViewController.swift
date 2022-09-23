@@ -33,7 +33,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.checkForToken(account: "franalarza@gmail.com", service: "Token")
-        //CoreDataManager.shared.deleteEntity(entityName: "PersistenceHeros")
     }
     
     // MARK: - IBACTIONS

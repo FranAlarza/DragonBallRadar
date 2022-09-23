@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -21,21 +21,21 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aU3-cN-L3v" customClass="CustomView" customModule="DragonBallAdvanced" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="390" height="350"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GA7-3R-OWJ">
-                            <rect key="frame" x="120" y="100" width="150" height="150"/>
+                            <rect key="frame" x="132" y="62.5" width="150" height="150"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="7V9-Nw-abb"/>
                                 <constraint firstAttribute="height" constant="150" id="VIa-jl-t0J"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43C-xe-Avg">
-                            <rect key="frame" x="50" y="275" width="290" height="23"/>
+                            <rect key="frame" x="50" y="237.5" width="314" height="23"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -47,15 +47,15 @@
                         <constraint firstItem="GA7-3R-OWJ" firstAttribute="centerX" secondItem="aU3-cN-L3v" secondAttribute="centerX" id="8o4-tp-E7C"/>
                         <constraint firstAttribute="trailing" secondItem="43C-xe-Avg" secondAttribute="trailing" constant="50" id="HvJ-cQ-xD4"/>
                         <constraint firstItem="43C-xe-Avg" firstAttribute="leading" secondItem="aU3-cN-L3v" secondAttribute="leading" constant="50" id="fHP-pk-paV"/>
-                        <constraint firstAttribute="height" constant="350" id="gkK-7W-31J"/>
+                        <constraint firstAttribute="height" constant="275" id="gkK-7W-31J"/>
                         <constraint firstItem="GA7-3R-OWJ" firstAttribute="centerY" secondItem="aU3-cN-L3v" secondAttribute="centerY" id="zgJ-ao-jSP"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBJ-mT-Q4L" userLabel="DescriptionView" customClass="CustomView" customModule="DragonBallAdvanced" customModuleProvider="target">
-                    <rect key="frame" x="20" y="390" width="350" height="38"/>
+                    <rect key="frame" x="20" y="315" width="374" height="257"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpS-ol-Gy7">
-                            <rect key="frame" x="10" y="10" width="330" height="18"/>
+                            <rect key="frame" x="10" y="10" width="354" height="237"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -70,10 +70,13 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgW-qS-dSV" customClass="CustomView" customModule="DragonBallAdvanced" customModuleProvider="target">
-                    <rect key="frame" x="20" y="468" width="350" height="292"/>
+                    <rect key="frame" x="20" y="612" width="374" height="200"/>
                     <subviews>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87f-aW-HqN">
-                            <rect key="frame" x="0.0" y="0.0" width="350" height="292"/>
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="6DD-Lo-Bef"/>
+                            </constraints>
                             <standardMapConfiguration key="preferredConfiguration"/>
                         </mapView>
                     </subviews>

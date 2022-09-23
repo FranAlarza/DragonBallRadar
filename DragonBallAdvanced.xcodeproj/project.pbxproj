@@ -23,6 +23,11 @@
 		2605630928C772A900B2C119 /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2605630728C772A900B2C119 /* OnboardingCollectionViewCell.xib */; };
 		2605630C28C7743400B2C119 /* PrincipalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2605630B28C7743400B2C119 /* PrincipalModel.swift */; };
 		262B8BA228C78E4900978339 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B8BA128C78E4900978339 /* OnboardingViewModel.swift */; };
+		268A7CEF28D8BCC900D1555E /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268A7CED28D8BCC900D1555E /* SearchResultsViewController.swift */; };
+		268A7CF028D8BCC900D1555E /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268A7CEE28D8BCC900D1555E /* SearchResultsViewController.xib */; };
+		268A7CF428D8BFB100D1555E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268A7CF228D8BFB100D1555E /* SearchResultTableViewCell.swift */; };
+		268A7CF528D8BFB100D1555E /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268A7CF328D8BFB100D1555E /* SearchResultTableViewCell.xib */; };
+		268A7CF828D8C24E00D1555E /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268A7CF728D8C24E00D1555E /* SearchResultsViewModel.swift */; };
 		268D692628CE002000AA0453 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D692528CE002000AA0453 /* UserDefaultsHelper.swift */; };
 		268D692928CE60CD00AA0453 /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D692828CE60CD00AA0453 /* HeroModel.swift */; };
 		268D692C28CE63A300AA0453 /* MapHeroesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D692B28CE63A300AA0453 /* MapHeroesViewModel.swift */; };
@@ -83,6 +88,11 @@
 		2605630728C772A900B2C119 /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		2605630B28C7743400B2C119 /* PrincipalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalModel.swift; sourceTree = "<group>"; };
 		262B8BA128C78E4900978339 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		268A7CED28D8BCC900D1555E /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		268A7CEE28D8BCC900D1555E /* SearchResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
+		268A7CF228D8BFB100D1555E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		268A7CF328D8BFB100D1555E /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		268A7CF728D8C24E00D1555E /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
 		268D692528CE002000AA0453 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		268D692828CE60CD00AA0453 /* HeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModel.swift; sourceTree = "<group>"; };
 		268D692B28CE63A300AA0453 /* MapHeroesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHeroesViewModel.swift; sourceTree = "<group>"; };
@@ -235,6 +245,7 @@
 				26EA73A928CA417300256913 /* Login */,
 				26BA975928CB2D22006EE79A /* Map */,
 				2692F28528D24FE9001B843A /* Detail */,
+				268A7CEB28D8BC6B00D1555E /* SearchResultsTable */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -282,6 +293,42 @@
 				262B8BA128C78E4900978339 /* OnboardingViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		268A7CEB28D8BC6B00D1555E /* SearchResultsTable */ = {
+			isa = PBXGroup;
+			children = (
+				268A7CF128D8BF7E00D1555E /* SearchCell */,
+				268A7CEC28D8BC9500D1555E /* Views */,
+				268A7CF628D8C22C00D1555E /* ViewModel */,
+			);
+			path = SearchResultsTable;
+			sourceTree = "<group>";
+		};
+		268A7CEC28D8BC9500D1555E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				268A7CED28D8BCC900D1555E /* SearchResultsViewController.swift */,
+				268A7CEE28D8BCC900D1555E /* SearchResultsViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		268A7CF128D8BF7E00D1555E /* SearchCell */ = {
+			isa = PBXGroup;
+			children = (
+				268A7CF228D8BFB100D1555E /* SearchResultTableViewCell.swift */,
+				268A7CF328D8BFB100D1555E /* SearchResultTableViewCell.xib */,
+			);
+			path = SearchCell;
+			sourceTree = "<group>";
+		};
+		268A7CF628D8C22C00D1555E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				268A7CF728D8C24E00D1555E /* SearchResultsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		268D692728CE60A800AA0453 /* Models */ = {
@@ -493,6 +540,8 @@
 				26BA975E28CB2DA2006EE79A /* MapHeroesViewController.xib in Resources */,
 				2692F28A28D25027001B843A /* DetailViewController.xib in Resources */,
 				26EA73AE28CA41E500256913 /* LoginViewController.xib in Resources */,
+				268A7CF028D8BCC900D1555E /* SearchResultsViewController.xib in Resources */,
+				268A7CF528D8BFB100D1555E /* SearchResultTableViewCell.xib in Resources */,
 				2605630928C772A900B2C119 /* OnboardingCollectionViewCell.xib in Resources */,
 				2605630428C76AA100B2C119 /* OnboardingViewController.xib in Resources */,
 				260562D628C765B800B2C119 /* Assets.xcassets in Resources */,
@@ -521,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				268D692628CE002000AA0453 /* UserDefaultsHelper.swift in Sources */,
+				268A7CEF28D8BCC900D1555E /* SearchResultsViewController.swift in Sources */,
 				26EA73AD28CA41E500256913 /* LoginViewController.swift in Sources */,
 				26BA975D28CB2DA2006EE79A /* MapHeroesViewController.swift in Sources */,
 				26A6D20C28CF73CC003DD494 /* CoreDataManager.swift in Sources */,
@@ -530,12 +580,14 @@
 				2692F28928D25027001B843A /* DetailViewController.swift in Sources */,
 				26BA976328CB3562006EE79A /* NetworkManager.swift in Sources */,
 				260562CA28C765B400B2C119 /* AppDelegate.swift in Sources */,
+				268A7CF828D8C24E00D1555E /* SearchResultsViewModel.swift in Sources */,
 				2692E32128D4ECEF00D98C1C /* Extension+ImageView.swift in Sources */,
 				2605630C28C7743400B2C119 /* PrincipalModel.swift in Sources */,
 				2604DC9328C8078300904694 /* MainViewController.swift in Sources */,
 				268D692928CE60CD00AA0453 /* HeroModel.swift in Sources */,
 				26EB5F4128CD5584002EF224 /* Extension+String.swift in Sources */,
 				2692E31F28D4E5D100D98C1C /* CustomMKAnnotation.swift in Sources */,
+				268A7CF428D8BFB100D1555E /* SearchResultTableViewCell.swift in Sources */,
 				26BA976628CB944D006EE79A /* LoginViewModel.swift in Sources */,
 				2605630328C76AA100B2C119 /* OnboardingViewController.swift in Sources */,
 				268D692C28CE63A300AA0453 /* MapHeroesViewModel.swift in Sources */,

@@ -11,6 +11,7 @@ import MapKit
 class DetailViewController: UIViewController {
     
     var annotation: CustomMKAnnotation?
+    var hero: PersistenceHeros?
     
     // MARK: - IBOUTLETS
     
@@ -22,7 +23,11 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         heroImage.layer.cornerRadius = heroImage.bounds.size.width / 2
-        setData()
+        if annotation == nil {
+            setHero()
+        } else {
+            setData()
+        }
         
     }
     
@@ -41,5 +46,24 @@ class DetailViewController: UIViewController {
         heroMap.setRegion(region, animated: true)
     }
     
-    
+    func setHero() {
+        heroImage.downloadImage(from: self.hero?.photo ?? "")
+        heroName.text = self.hero?.name
+        heroDescription.text = self.hero?.descripcion
+        
+        
+        let point = MKPointAnnotation()
+        point.title = self.hero?.name
+        
+        if self.hero?.latitud == 0.0 && self.hero?.longitud == 0.0 {
+            self.hero?.latitud = Double((0...90).randomElement() ?? 0)
+            self.hero?.longitud = Double((-180...180).randomElement() ?? 0)
+        }
+        point.coordinate = CLLocationCoordinate2D(latitude: self.hero?.latitud ?? 0,
+                                                  longitude: self.hero?.longitud ?? 0)
+        
+        let region = MKCoordinateRegion(center: point.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        heroMap.addAnnotation(point)
+        heroMap.setRegion(region, animated: true)
+    }
 }
