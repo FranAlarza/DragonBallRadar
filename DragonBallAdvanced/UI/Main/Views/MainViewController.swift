@@ -33,13 +33,14 @@ class MainViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func didLoginTap(_ sender: Any) {
         let login = LoginViewController()
-        login.viewModel = LoginViewModel(delegate: login)
+        login.viewModel = LoginViewModel()
         login.modalPresentationStyle = .fullScreen
         login.modalTransitionStyle = .crossDissolve
         present(login, animated: true)
     }
     
     @IBAction func didSignUpTap(_ sender: Any) {
+        // TODO: If i have time implement the register view
     }
     
 }

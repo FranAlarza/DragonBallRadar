@@ -14,7 +14,7 @@
 		260562D428C765B400B2C119 /* DragonBallAdvanced.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 260562D228C765B400B2C119 /* DragonBallAdvanced.xcdatamodeld */; };
 		260562D628C765B800B2C119 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260562D528C765B800B2C119 /* Assets.xcassets */; };
 		260562D928C765B800B2C119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 260562D728C765B800B2C119 /* LaunchScreen.storyboard */; };
-		260562E428C765B800B2C119 /* DragonBallAdvancedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562E328C765B800B2C119 /* DragonBallAdvancedTests.swift */; };
+		260562E428C765B800B2C119 /* UserDefaultsHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */; };
 		260562EE28C765B800B2C119 /* DragonBallAdvancedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562ED28C765B800B2C119 /* DragonBallAdvancedUITests.swift */; };
 		260562F028C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562EF28C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift */; };
 		2605630328C76AA100B2C119 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2605630128C76AA100B2C119 /* OnboardingViewController.swift */; };
@@ -48,6 +48,7 @@
 		26EA73AD28CA41E500256913 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EA73AB28CA41E500256913 /* LoginViewController.swift */; };
 		26EA73AE28CA41E500256913 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26EA73AC28CA41E500256913 /* LoginViewController.xib */; };
 		26EB5F4128CD5584002EF224 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB5F4028CD5584002EF224 /* Extension+String.swift */; };
+		26FDBDEF28E073B2000493DB /* KeyChainHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +79,7 @@
 		260562D828C765B800B2C119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		260562DA28C765B800B2C119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		260562DF28C765B800B2C119 /* DragonBallAdvancedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragonBallAdvancedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		260562E328C765B800B2C119 /* DragonBallAdvancedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonBallAdvancedTests.swift; sourceTree = "<group>"; };
+		260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelperTests.swift; sourceTree = "<group>"; };
 		260562E928C765B800B2C119 /* DragonBallAdvancedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragonBallAdvancedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260562ED28C765B800B2C119 /* DragonBallAdvancedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonBallAdvancedUITests.swift; sourceTree = "<group>"; };
 		260562EF28C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonBallAdvancedUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		26EA73AB28CA41E500256913 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		26EA73AC28CA41E500256913 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		26EB5F4028CD5584002EF224 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +208,8 @@
 		260562E228C765B800B2C119 /* DragonBallAdvancedTests */ = {
 			isa = PBXGroup;
 			children = (
-				260562E328C765B800B2C119 /* DragonBallAdvancedTests.swift */,
+				260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */,
+				26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */,
 			);
 			path = DragonBallAdvancedTests;
 			sourceTree = "<group>";
@@ -604,7 +607,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				260562E428C765B800B2C119 /* DragonBallAdvancedTests.swift in Sources */,
+				260562E428C765B800B2C119 /* UserDefaultsHelperTests.swift in Sources */,
+				26FDBDEF28E073B2000493DB /* KeyChainHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

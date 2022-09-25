@@ -18,7 +18,7 @@ class OnboardingViewController: UIViewController {
     
     // MARK: - VARIABLES
     var viewModel: OnboardingViewModelProtocol?
-    var userHasSeenTheTutorial = false
+    private var userHasSeenTheTutorial = false
     private var currentPage = 0 {
         didSet {
             if currentPage < (viewModel?.slidesCount ?? 0) - 1 {
@@ -50,7 +50,7 @@ class OnboardingViewController: UIViewController {
         } else {
             goToLogin()
             userHasSeenTheTutorial = true
-            UserDefaultsHelper.saveItems(item: userHasSeenTheTutorial)
+            UserDefaultsHelper.saveItems(item: userHasSeenTheTutorial, key: .tutorial)
             
         }
     }

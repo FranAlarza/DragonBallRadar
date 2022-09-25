@@ -11,7 +11,6 @@ import CoreLocation
 
 protocol MapHeroesProtocol: AnyObject {
     func showUserLocation()
-    func createPointAnnotation(with model: PersistenceHeros)
 }
 
 class MapHeroesViewController: UIViewController {
@@ -20,7 +19,7 @@ class MapHeroesViewController: UIViewController {
     @IBOutlet weak var heroMap: MKMapView!
     
     // MARK: - VARIABLES
-    var viewModel: MapHeroesViewModelProtocol?
+    var viewModel = MapHeroesViewModel()
     
     // MARK: - CONSTANTS
     let locationManager = CLLocationManager()
@@ -30,34 +29,25 @@ class MapHeroesViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.searchController = searchController
         showUserLocation()
-        viewModel?.getCharacters()
-        viewModel?.onViewsLoaded()
+        // View Model Calls
+        viewModel.onSuccess = { [weak self] in
+            self?.heroMap.addAnnotations(self?.viewModel.putHeroInMap() ?? [])
+        }
+        viewModel.createCustomMKAnnotation = { hero in
+            let characterLocation = CustomMKAnnotation(title: hero.name ?? "",
+                                                               coordenates: CLLocationCoordinate2D(latitude: hero.latitud, longitude: hero.longitud),
+                                                               descriptionHero: hero.descripcion ?? "",
+                                                               photo: hero.photo ?? "")
+            return characterLocation
+            
+        }
+        viewModel.getCharacters()
+        viewModel.onViewsLoaded()
         heroMap.delegate = self
         searchController.searchResultsUpdater = self
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
 }
 
-extension MapHeroesViewController: MapHeroesProtocol {
-    func showUserLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestAlwaysAuthorization()
-        }
-        heroMap.showsUserLocation = true
-    }
-    
-    func createPointAnnotation(with model: PersistenceHeros) {
-        let characterLocation = CustomMKAnnotation(title: model.name ?? "",
-                                                   coordenates: CLLocationCoordinate2D(latitude: model.latitud, longitude: model.longitud),
-                                                   descriptionHero: model.descripcion ?? "",
-                                                   photo: model.photo ?? "")
-        heroMap.addAnnotation(characterLocation)
-    }
-}
 
 extension MapHeroesViewController: MKMapViewDelegate {
     
@@ -97,5 +87,16 @@ extension MapHeroesViewController: UISearchResultsUpdating {
         guard let resultController = searchController.searchResultsController as? SearchResultsViewController else { return }
         resultController.viewModel = SearchResultsViewModel(delegate: resultController)
         resultController.viewModel?.fetchResultHeroes(with: predicate)
+    }
+}
+
+extension MapHeroesViewController: MapHeroesProtocol {
+    func showUserLocation() {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            if CLLocationManager.locationServicesEnabled() {
+                self?.locationManager.requestAlwaysAuthorization()
+            }
+            self?.heroMap.showsUserLocation = true
+        }
     }
 }

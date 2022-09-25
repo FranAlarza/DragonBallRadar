@@ -53,6 +53,7 @@
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2rk-Kg-Fr3">
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="tintColor" systemColor="systemOrangeColor"/>
                     <color key="color" systemColor="systemOrangeColor"/>
                 </activityIndicatorView>
             </subviews>

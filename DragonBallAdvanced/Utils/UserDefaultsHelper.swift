@@ -14,15 +14,15 @@ enum UserDefaultsKeys: String {
 class UserDefaultsHelper {
     static var userDefaults = UserDefaults.standard
     
-    static func saveItems<T>(item: T) {
-        userDefaults.set(item, forKey: UserDefaultsKeys.tutorial.rawValue)
+    static func saveItems<T>(item: T, key: UserDefaultsKeys) {
+        userDefaults.set(item, forKey: key.rawValue)
     }
     
-    static func getItems<T>() -> T {
-        userDefaults.bool(forKey: UserDefaultsKeys.tutorial.rawValue) as! T
+    static func getItems(key: UserDefaultsKeys) -> Any? {
+        userDefaults.value(forKey: key.rawValue)
     }
     
-    static func delete() {
-        userDefaults.removeObject(forKey: UserDefaultsKeys.tutorial.rawValue)
+    static func deleteItem(key: UserDefaultsKeys) {
+        userDefaults.removeObject(forKey: key.rawValue)
     }
 }

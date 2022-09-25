@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LoginViewControllerProtocol: AnyObject {
+protocol LoginViewControllerProtocol {
     func navigateToMapView()
 }
 
@@ -23,25 +23,31 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - VARIABLES
-    var viewModel: loginViewModelProtocol?
+    var viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewModel.onLoginSuccess = { [weak self] in
+            DispatchQueue.main.async {
+                self?.activityIndicator.isHidden = false
+                self?.activityIndicator.startAnimating()
+            }
+            self?.navigateToMapView()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.checkForToken(account: "franalarza@gmail.com", service: "Token")
+        viewModel.checkForToken(account: "franalarza@gmail.com", service: "Token")
     }
     
     // MARK: - IBACTIONS
-    @IBAction func didLoginTap(_ sender: Any) {
-        activityIndicator.startAnimating()
+    @IBAction func didLoginTap(_ sender: UIButton) {
         guard let user = usernameTextField.text,
               let password = passwordTextField.text else { return }
+        
         if user.isValidEmail && !password.isEmpty {
-            viewModel?.getTokenAccess(user: user, password: password)
+            viewModel.login(user: user, password: password)
             activityIndicator.stopAnimating()
         } else {
             activityIndicator.stopAnimating()
@@ -54,7 +60,6 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewControllerProtocol {
     func navigateToMapView() {
         let rootVC = MapHeroesViewController()
-        rootVC.viewModel = MapHeroesViewModel(delegate: rootVC)
         let navController = UINavigationController(rootViewController: rootVC)
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .flipHorizontal

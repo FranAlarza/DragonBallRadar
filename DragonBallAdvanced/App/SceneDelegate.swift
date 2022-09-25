@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        if UserDefaultsHelper.getItems() == true {
+        if (UserDefaultsHelper.getItems(key: .tutorial) != nil) == true {
             CoreDataManager.shared.deleteEntity(entityName: "PersistenceHeros")
             let principalVC = MainViewController()
             window.rootViewController = principalVC
@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
         } else {
             let principalVC = OnboardingViewController()
-            principalVC.viewModel = OnboardingViewModel(delegate: principalVC)
+            principalVC.viewModel = OnboardingViewModel()
             window.rootViewController = principalVC
             window.makeKeyAndVisible()
             self.window = window

@@ -7,34 +7,38 @@
 
 import Foundation
 
-protocol loginViewModelProtocol {
-    func onViewsLoaded()
-    func getTokenAccess(user: String, password: String)
+protocol LoginViewModelProtocol {
+    func login(user: String, password: String)
     func checkForToken(account: String, service: String)
 }
 
 final class LoginViewModel {
-    // MARK: - CONSTANTS
-    let networkManager = NetworkManager()
-    
     // MARK: - VARIABLES
-    weak var delegate: LoginViewControllerProtocol?
+    var networkManager: NetworkManager?
+    var onLoginSuccess: (() -> Void)?
+    var onLoginFailure: ((String) -> Void)?
     
-    init(delegate: LoginViewControllerProtocol) {
-        self.delegate = delegate
+    init(networkManager: NetworkManager? = NetworkManager(),
+         onLoginSuccess: (() -> Void)? = nil,
+         onLoginFailure: ((String) -> Void)? = nil) {
+        self.networkManager = networkManager
+        self.onLoginSuccess = onLoginSuccess
+        self.onLoginFailure = onLoginFailure
     }
 }
 
-extension LoginViewModel: loginViewModelProtocol {
-    func onViewsLoaded() {
-        //
-    }
+extension LoginViewModel: LoginViewModelProtocol {
     
-    func getTokenAccess(user: String, password: String) {
-        networkManager.login(name: user, password: password) { [weak self] token, error in
-            guard let dataToken = token?.data(using: .utf8) else { return }
-            keyChainHelper.standard.save(dataToken, service: "Token", account: "\(user)")
-            self?.checkForToken(account: "\(user)", service: "Token")
+    func login(user: String, password: String) {
+        networkManager?.login(name: user, password: password) { [weak self] result in
+            switch result {
+            case .success(let token):
+                guard let token = token?.data(using: .utf8) else { return }
+                keyChainHelper.standard.save(token, service: "Token", account: "\(user)")
+                self?.checkForToken(account: "\(user)", service: "Token")
+            case .failure(let error):
+                self?.onLoginFailure?("\(error)")
+            }
         }
     }
     
@@ -44,10 +48,11 @@ extension LoginViewModel: loginViewModelProtocol {
         
         if !token.isEmpty {
             DispatchQueue.main.async { [weak self] in
-                self?.delegate?.navigateToMapView()
+                self?.onLoginSuccess?()
             }
         } else {
-            return
+            self.onLoginFailure?("Wrong Token")
+            
         }
     }
     

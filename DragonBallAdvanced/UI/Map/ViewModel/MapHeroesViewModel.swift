@@ -11,19 +11,26 @@ protocol MapHeroesViewModelProtocol {
     func onViewsLoaded()
     func getCharacters()
     func fetchHeroesFromCoreData()
-    func putHeroInMap()
+    func putHeroInMap() -> [CustomMKAnnotation]
 }
 
-class MapHeroesViewModel {
-    // MARK: - CONSTANTS
-    private let networkManager = NetworkManager()
-    
+final class MapHeroesViewModel {
     // MARK: - VARIABLES
-    private weak var delegate: MapHeroesProtocol?
     private var persistanceHeroes: [PersistenceHeros] = []
+    private var networkManager: NetworkManager?
+    var onSuccess: (() -> Void)?
+    var onFailure: (() -> Void)?
+    var createCustomMKAnnotation: ((PersistenceHeros) -> CustomMKAnnotation)?
     
-    init(delegate: MapHeroesProtocol) {
-        self.delegate = delegate
+    // MARK: - INITIALIZER
+    init(networkManager: NetworkManager? = NetworkManager(),
+         onSuccess: (() -> Void)? = nil,
+         onFailure: (() -> Void)? = nil,
+         createCustomMKAnnotation: ((PersistenceHeros) -> CustomMKAnnotation)? = nil) {
+        self.networkManager = networkManager
+        self.onSuccess = onSuccess
+        self.onFailure = onFailure
+        self.createCustomMKAnnotation = createCustomMKAnnotation
     }
     
     // MARK: - FUNCTIONS
@@ -41,54 +48,73 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(fetchHeroesFromCoreData), name: .heroesStoredInCoreData, object: nil)
     }
     
+    // Call the API, receive the heroes and their locations and save them in Core Data
     func getCharacters() {
         let token = getPersistenceToken()
-        networkManager.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
-                                           requestBody: Body(name: ""),
-                                           token: token,
-                                           type: [Hero].self) { [weak self] heroesResponse, _ in
-            var heroes: [Hero] = heroesResponse ?? []
-            heroes.enumerated().forEach { index, heroCoordenate in
-                self?.networkManager.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
-                                                         requestBody: Body(id: heroCoordenate.id), token: token,
-                                                         type: [Geolocation].self) { geolocations, _ in
-                    guard let geolocations = geolocations else { return }
-                    let firstCordinate = geolocations.first
-                    
-                    if geolocations.isEmpty {
-                        DispatchQueue.main.async {
-                            CoreDataManager.shared.saveHeroes(with: heroes[index])
+        networkManager?.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
+                                            requestBody: Body(name: ""),
+                                            token: token,
+                                            type: [Hero].self) { [weak self] result in
+            switch result {
+            case .success(let heroesResponse):
+                var heroes: [Hero] = heroesResponse ?? []
+                heroes.enumerated().forEach { index, heroCoordenate in
+                    self?.networkManager?.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
+                                                              requestBody: Body(id: heroCoordenate.id),
+                                                              token: token,
+                                                              type: [Geolocation].self) { result in
+                        switch result {
+                        case .success(let geolocations):
+                            guard let geolocations = geolocations else { return }
+                            let firstCordinate = geolocations.first
+                            
+                            if geolocations.isEmpty {
+                                DispatchQueue.main.async {
+                                    CoreDataManager.shared.saveHeroes(with: heroes[index])
+                                }
+                            } else {
+                                heroes[index].latitud = Double(firstCordinate?.latitud ?? "0.0")
+                                heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
+                                DispatchQueue.main.async {
+                                    CoreDataManager.shared.saveHeroes(with: heroes[index])
+                                    NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
+                                }
+                            }
+
+                        case .failure(_):
+                            print("\(NetworkError.geolocationsError)")
                         }
-                    } else {
-                        heroes[index].latitud = Double(firstCordinate?.latitud ?? "0.0")
-                        heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
-                        DispatchQueue.main.async {
-                            CoreDataManager.shared.saveHeroes(with: heroes[index])
-                            NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
-                        }
-                    }
+                                            }
                 }
+            case .failure(_):
+                print("\(NetworkError.heroesError)")
             }
+            
         }
         
     }
     
+    func putHeroInMap() -> [CustomMKAnnotation] {
+        var mkAnnotations: [CustomMKAnnotation] = []
+        persistanceHeroes.forEach { persistanceHero in
+            if persistanceHero.latitud != 0.0 && persistanceHero.longitud != 0.0 {
+                if let characterLocation = createCustomMKAnnotation?(persistanceHero) {
+                    mkAnnotations.append(characterLocation)
+                }
+            }
+        }
+        return mkAnnotations
+    }
+    
+    // This function is executed when Notification Center notifies that the heroes has been saved succesfully to Core Data
     @objc func fetchHeroesFromCoreData() {
         CoreDataManager.shared.fetchHeroes { result in
             switch result {
             case .success(let heroes):
                 self.persistanceHeroes = heroes ?? []
-                putHeroInMap()
+                onSuccess?()
             case .failure(let error):
                 print("\(error)")
-            }
-        }
-    }
-    
-    func putHeroInMap() {
-        persistanceHeroes.forEach { persistanceHero in
-            if persistanceHero.latitud != 0.0 && persistanceHero.longitud != 0.0 {
-                delegate?.createPointAnnotation(with: persistanceHero)
             }
         }
     }

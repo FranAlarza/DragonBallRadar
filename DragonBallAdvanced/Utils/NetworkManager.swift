@@ -18,6 +18,8 @@ enum NetworkError: Error {
     case requestFormatError
     case dataError
     case responseError
+    case geolocationsError
+    case heroesError
 }
 
 struct Body: Encodable {
@@ -27,15 +29,17 @@ struct Body: Encodable {
 
 class NetworkManager {
     private let baseURL = "https://vapor2022.herokuapp.com"
-    func login(name: String, password: String, completion: @escaping (String?, NetworkError?) -> Void) {
+    
+    let session = URLSession.shared
+    func login(name: String, password: String, completion: @escaping (Result<String?, NetworkError>) -> Void) {
         
         guard let url = URL(string: "\(baseURL)\(Endpoint.loginEndpoint.rawValue)") else {
-            completion(nil, .incorrectUrl)
+            completion(.failure(.incorrectUrl))
             return
         }
         
         guard let loginStringBase64 = String(format: "%@:%@", name, password).data(using: .utf8)?.base64EncodedString() else {
-            completion(nil, .requestFormatError)
+            completion(.failure(.requestFormatError))
             return
         }
         
@@ -43,15 +47,15 @@ class NetworkManager {
         request.httpMethod = "POST"
         request.setValue("Basic \(loginStringBase64)", forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completion(nil, .dataError)
+                completion(.failure(.dataError))
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
-                completion(nil, .responseError)
+                completion(.failure(.responseError))
                 return
             }
             
@@ -60,35 +64,38 @@ class NetworkManager {
             }
             
             let tokenResponse = String(data: data, encoding: .utf8)
-            completion(tokenResponse, nil)
+            completion(.success(tokenResponse))
             
             
         }.resume()
     }
     
-    func fetchDragonBallData<T: Decodable>(from endpoint: String, requestBody: Body, token: String, type: T.Type, completion: @escaping (T?, NetworkError?) -> Void) {
+    func fetchDragonBallData<T: Decodable>(from endpoint: String, requestBody: Body, token: String, type: T.Type, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
         guard let request = request(endpoint: endpoint, token: token, body: requestBody) else { return }
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, response, error in
             guard error == nil else{
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
-                completion(nil, .responseError)
+                completion(.failure(.responseError))
                 return
             }
             
-            if let data = data {
-                let result = try? JSONDecoder().decode(type.self, from: data)
-                completion(result, nil)
+            guard let data else { return }
+            
+            if let result = try? JSONDecoder().decode(type.self, from: data) {
+                completion(.success(result))
+            } else {
+                completion(.failure(.dataError))
             }
         }.resume()
     }
     
-    private func request(endpoint: String, token: String, body: Body) -> URLRequest? {
+    private func request<R: Encodable>(endpoint: String, token: String, body: R) -> URLRequest? {
        
         guard let url = URL(string: "\(baseURL)\(endpoint)") else {
             return nil
@@ -99,8 +106,7 @@ class NetworkManager {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let bodyRequest = body
-        request.httpBody = try? JSONEncoder().encode(bodyRequest)
+        request.httpBody = try? JSONEncoder().encode(body)
         return request
     }
 }

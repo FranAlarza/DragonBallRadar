@@ -21,10 +21,6 @@ class OnboardingViewModel {
         PrincipalModel(image: "Goku-2", title: "All Characters have disappeared", description: "Use your app to know the real location for each character"),
         PrincipalModel(image: "Goku-3", title: "Good Bye Earthling", description: "If you search well in your app maybe you will find my location.")
     ]
-    
-    init(delegate: OnboardingViewController){
-        self.delegate = delegate
-    }
 }
 
 extension OnboardingViewModel: OnboardingViewModelProtocol {
