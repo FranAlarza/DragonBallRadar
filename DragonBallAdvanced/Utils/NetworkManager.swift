@@ -16,6 +16,7 @@ enum Endpoint: String {
 enum NetworkError: Error {
     case incorrectUrl
     case requestFormatError
+    case requestError
     case dataError
     case responseError
     case geolocationsError
@@ -28,9 +29,13 @@ struct Body: Encodable {
 }
 
 class NetworkManager {
-    private let baseURL = "https://vapor2022.herokuapp.com"
+    private let baseURL = "https://dragonball.keepcoding.education"
     
-    let session = URLSession.shared
+    var session: URLSession
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
     func login(name: String, password: String, completion: @escaping (Result<String?, NetworkError>) -> Void) {
         
         guard let url = URL(string: "\(baseURL)\(Endpoint.loginEndpoint.rawValue)") else {
@@ -60,6 +65,7 @@ class NetworkManager {
             }
             
             guard error == nil else {
+                completion(.failure(.requestError))
                 return
             }
             
@@ -70,7 +76,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchDragonBallData<T: Decodable>(from endpoint: String, requestBody: Body, token: String, type: T.Type, completion: @escaping (Result<T?, NetworkError>) -> Void) {
+    func fetchDragonBallData<T: Decodable>(from endpoint: String, requestBody: Body?, token: String, type: T.Type, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
         guard let request = request(endpoint: endpoint, token: token, body: requestBody) else { return }
         

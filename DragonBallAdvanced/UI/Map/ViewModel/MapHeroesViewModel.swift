@@ -51,46 +51,51 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
     // Call the API, receive the heroes and their locations and save them in Core Data
     func getCharacters() {
         let token = getPersistenceToken()
-        networkManager?.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
-                                            requestBody: Body(name: ""),
-                                            token: token,
-                                            type: [Hero].self) { [weak self] result in
-            switch result {
-            case .success(let heroesResponse):
-                var heroes: [Hero] = heroesResponse ?? []
-                heroes.enumerated().forEach { index, heroCoordenate in
-                    self?.networkManager?.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
-                                                              requestBody: Body(id: heroCoordenate.id),
-                                                              token: token,
-                                                              type: [Geolocation].self) { result in
-                        switch result {
-                        case .success(let geolocations):
-                            guard let geolocations = geolocations else { return }
-                            let firstCordinate = geolocations.first
-                            
-                            if geolocations.isEmpty {
-                                DispatchQueue.main.async {
-                                    CoreDataManager.shared.saveHeroes(with: heroes[index])
+        
+        guard persistanceHeroes.count != 0 else {
+            networkManager?.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
+                                                requestBody: Body(name: ""),
+                                                token: token,
+                                                type: [Hero].self) { [weak self] result in
+                switch result {
+                case .success(let heroesResponse):
+                    var heroes: [Hero] = heroesResponse ?? []
+                    heroes.enumerated().forEach { index, heroCoordenate in
+                        self?.networkManager?.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
+                                                                  requestBody: Body(id: heroCoordenate.id),
+                                                                  token: token,
+                                                                  type: [Geolocation].self) { result in
+                            switch result {
+                            case .success(let geolocations):
+                                guard let geolocations = geolocations else { return }
+                                let firstCordinate = geolocations.first
+                                
+                                if geolocations.isEmpty {
+                                    DispatchQueue.main.async {
+                                        CoreDataManager.shared.saveHeroes(with: heroes[index])
+                                    }
+                                } else {
+                                    heroes[index].latitud = Double(firstCordinate?.latitud ?? "0.0")
+                                    heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
+                                    DispatchQueue.main.async {
+                                        CoreDataManager.shared.saveHeroes(with: heroes[index])
+                                        NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
+                                    }
                                 }
-                            } else {
-                                heroes[index].latitud = Double(firstCordinate?.latitud ?? "0.0")
-                                heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
-                                DispatchQueue.main.async {
-                                    CoreDataManager.shared.saveHeroes(with: heroes[index])
-                                    NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
-                                }
+                                
+                            case .failure(_):
+                                print("\(NetworkError.geolocationsError)")
                             }
-
-                        case .failure(_):
-                            print("\(NetworkError.geolocationsError)")
                         }
-                                            }
+                    }
+                case .failure(_):
+                    print("\(NetworkError.heroesError)")
                 }
-            case .failure(_):
-                print("\(NetworkError.heroesError)")
+                
             }
-            
+            return
         }
+        
         
     }
     
@@ -111,10 +116,11 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
         CoreDataManager.shared.fetchHeroes { result in
             switch result {
             case .success(let heroes):
+                print("heroes desde coreData")
                 self.persistanceHeroes = heroes ?? []
                 onSuccess?()
             case .failure(let error):
-                print("\(error)")
+                print("Fetch Heroes: \(error)")
             }
         }
     }

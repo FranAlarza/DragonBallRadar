@@ -15,8 +15,6 @@
 		260562D628C765B800B2C119 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260562D528C765B800B2C119 /* Assets.xcassets */; };
 		260562D928C765B800B2C119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 260562D728C765B800B2C119 /* LaunchScreen.storyboard */; };
 		260562E428C765B800B2C119 /* UserDefaultsHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */; };
-		260562EE28C765B800B2C119 /* DragonBallAdvancedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562ED28C765B800B2C119 /* DragonBallAdvancedUITests.swift */; };
-		260562F028C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260562EF28C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift */; };
 		2605630328C76AA100B2C119 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2605630128C76AA100B2C119 /* OnboardingViewController.swift */; };
 		2605630428C76AA100B2C119 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2605630228C76AA100B2C119 /* OnboardingViewController.xib */; };
 		2605630828C772A900B2C119 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2605630628C772A900B2C119 /* OnboardingCollectionViewCell.swift */; };
@@ -38,6 +36,9 @@
 		2692E36428D5390D00D98C1C /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692E36328D5390C00D98C1C /* CustomView.swift */; };
 		2692F28928D25027001B843A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692F28728D25026001B843A /* DetailViewController.swift */; };
 		2692F28A28D25027001B843A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2692F28828D25027001B843A /* DetailViewController.xib */; };
+		2693CD8128E8F97C007A9547 /* LoginViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */; };
+		26A503BF28E1EEDF006B0103 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */; };
+		26A503C128E1F40D006B0103 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */; };
 		26A6D20C28CF73CC003DD494 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */; };
 		26A6D20E28CFB0A7003DD494 /* Extension+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6D20D28CFB0A7003DD494 /* Extension+MapView.swift */; };
 		26BA975D28CB2DA2006EE79A /* MapHeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA975B28CB2DA2006EE79A /* MapHeroesViewController.swift */; };
@@ -59,13 +60,6 @@
 			remoteGlobalIDString = 260562C528C765B400B2C119;
 			remoteInfo = DragonBallAdvanced;
 		};
-		260562EA28C765B800B2C119 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 260562BE28C765B400B2C119 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 260562C528C765B400B2C119;
-			remoteInfo = DragonBallAdvanced;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -80,9 +74,6 @@
 		260562DA28C765B800B2C119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		260562DF28C765B800B2C119 /* DragonBallAdvancedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragonBallAdvancedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelperTests.swift; sourceTree = "<group>"; };
-		260562E928C765B800B2C119 /* DragonBallAdvancedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragonBallAdvancedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		260562ED28C765B800B2C119 /* DragonBallAdvancedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonBallAdvancedUITests.swift; sourceTree = "<group>"; };
-		260562EF28C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonBallAdvancedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2605630128C76AA100B2C119 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2605630228C76AA100B2C119 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		2605630628C772A900B2C119 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -104,6 +95,10 @@
 		2692E36328D5390C00D98C1C /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		2692F28728D25026001B843A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2692F28828D25027001B843A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTest.swift; sourceTree = "<group>"; };
+		26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		26A503C428E207F5006B0103 /* heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heroes.json; sourceTree = "<group>"; };
 		26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		26A6D20D28CFB0A7003DD494 /* Extension+MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+MapView.swift"; sourceTree = "<group>"; };
 		26BA975B28CB2DA2006EE79A /* MapHeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHeroesViewController.swift; sourceTree = "<group>"; };
@@ -126,13 +121,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		260562DC28C765B800B2C119 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		260562E628C765B800B2C119 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -175,7 +163,6 @@
 			children = (
 				260562C828C765B400B2C119 /* DragonBallAdvanced */,
 				260562E228C765B800B2C119 /* DragonBallAdvancedTests */,
-				260562EC28C765B800B2C119 /* DragonBallAdvancedUITests */,
 				260562C728C765B400B2C119 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -185,7 +172,6 @@
 			children = (
 				260562C628C765B400B2C119 /* DragonBallAdvanced.app */,
 				260562DF28C765B800B2C119 /* DragonBallAdvancedTests.xctest */,
-				260562E928C765B800B2C119 /* DragonBallAdvancedUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,19 +194,14 @@
 		260562E228C765B800B2C119 /* DragonBallAdvancedTests */ = {
 			isa = PBXGroup;
 			children = (
+				26A503C328E207B6006B0103 /* JSON */,
+				26A503C228E2030F006B0103 /* Mocks */,
 				260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */,
 				26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */,
+				26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */,
+				2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */,
 			);
 			path = DragonBallAdvancedTests;
-			sourceTree = "<group>";
-		};
-		260562EC28C765B800B2C119 /* DragonBallAdvancedUITests */ = {
-			isa = PBXGroup;
-			children = (
-				260562ED28C765B800B2C119 /* DragonBallAdvancedUITests.swift */,
-				260562EF28C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift */,
-			);
-			path = DragonBallAdvancedUITests;
 			sourceTree = "<group>";
 		};
 		260562FC28C7673700B2C119 /* App */ = {
@@ -369,6 +350,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		26A503C228E2030F006B0103 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		26A503C328E207B6006B0103 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				26A503C428E207F5006B0103 /* heroes.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 		26BA975928CB2D22006EE79A /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,10 +405,10 @@
 		26BA976128CB3525006EE79A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				26FDBDF528E0A5ED000493DB /* CoreDataUtils */,
 				26BA976228CB3562006EE79A /* NetworkManager.swift */,
 				26BA976728CBA1E0006EE79A /* KeyChainHelper.swift */,
 				268D692528CE002000AA0453 /* UserDefaultsHelper.swift */,
-				26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -432,6 +429,14 @@
 				26EA73AC28CA41E500256913 /* LoginViewController.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		26FDBDF528E0A5ED000493DB /* CoreDataUtils */ = {
+			isa = PBXGroup;
+			children = (
+				26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */,
+			);
+			path = CoreDataUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,24 +477,6 @@
 			productReference = 260562DF28C765B800B2C119 /* DragonBallAdvancedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		260562E828C765B800B2C119 /* DragonBallAdvancedUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 260562F928C765B800B2C119 /* Build configuration list for PBXNativeTarget "DragonBallAdvancedUITests" */;
-			buildPhases = (
-				260562E528C765B800B2C119 /* Sources */,
-				260562E628C765B800B2C119 /* Frameworks */,
-				260562E728C765B800B2C119 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				260562EB28C765B800B2C119 /* PBXTargetDependency */,
-			);
-			name = DragonBallAdvancedUITests;
-			productName = DragonBallAdvancedUITests;
-			productReference = 260562E928C765B800B2C119 /* DragonBallAdvancedUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -504,10 +491,6 @@
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					260562DE28C765B800B2C119 = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 260562C528C765B400B2C119;
-					};
-					260562E828C765B800B2C119 = {
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = 260562C528C765B400B2C119;
 					};
@@ -528,7 +511,6 @@
 			targets = (
 				260562C528C765B400B2C119 /* DragonBallAdvanced */,
 				260562DE28C765B800B2C119 /* DragonBallAdvancedTests */,
-				260562E828C765B800B2C119 /* DragonBallAdvancedUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -552,13 +534,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		260562DD28C765B800B2C119 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		260562E728C765B800B2C119 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -607,17 +582,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26A503C128E1F40D006B0103 /* NetworkManagerTests.swift in Sources */,
+				26A503BF28E1EEDF006B0103 /* URLSessionMock.swift in Sources */,
 				260562E428C765B800B2C119 /* UserDefaultsHelperTests.swift in Sources */,
+				2693CD8128E8F97C007A9547 /* LoginViewModelTest.swift in Sources */,
 				26FDBDEF28E073B2000493DB /* KeyChainHelperTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		260562E528C765B800B2C119 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				260562F028C765B800B2C119 /* DragonBallAdvancedUITestsLaunchTests.swift in Sources */,
-				260562EE28C765B800B2C119 /* DragonBallAdvancedUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,11 +597,6 @@
 			isa = PBXTargetDependency;
 			target = 260562C528C765B400B2C119 /* DragonBallAdvanced */;
 			targetProxy = 260562E028C765B800B2C119 /* PBXContainerItemProxy */;
-		};
-		260562EB28C765B800B2C119 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 260562C528C765B400B2C119 /* DragonBallAdvanced */;
-			targetProxy = 260562EA28C765B800B2C119 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -858,42 +822,6 @@
 			};
 			name = Release;
 		};
-		260562FA28C765B800B2C119 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F9QA4T4B5C;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.franalarza.DragonBallAdvancedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DragonBallAdvanced;
-			};
-			name = Debug;
-		};
-		260562FB28C765B800B2C119 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F9QA4T4B5C;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.franalarza.DragonBallAdvancedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DragonBallAdvanced;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -920,15 +848,6 @@
 			buildConfigurations = (
 				260562F728C765B800B2C119 /* Debug */,
 				260562F828C765B800B2C119 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		260562F928C765B800B2C119 /* Build configuration list for PBXNativeTarget "DragonBallAdvancedUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				260562FA28C765B800B2C119 /* Debug */,
-				260562FB28C765B800B2C119 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

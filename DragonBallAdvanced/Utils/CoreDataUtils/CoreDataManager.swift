@@ -21,20 +21,15 @@ class CoreDataManager {
         
         let heroItem = PersistenceHeros(context: context)
         
-        heroItem.name = modelHero.name
-        heroItem.id = modelHero.id
-        heroItem.descripcion = modelHero.description
+        heroItem.name = modelHero.name ?? ""
+        heroItem.id = modelHero.id ?? ""
+        heroItem.descripcion = modelHero.description ?? ""
         heroItem.favourite = modelHero.favorite ?? false
-        heroItem.photo = modelHero.photo?.absoluteString
+        heroItem.photo = modelHero.photo?.absoluteString ?? ""
         heroItem.latitud = modelHero.latitud ?? 0.0
         heroItem.longitud = modelHero.longitud ?? 0.0
         
-        do {
-            try context.save()
-            print("Los datos se guardaron correctamente")
-        } catch {
-            print("Error de Guardado - \(error)")
-        }
+        context.saveContext()
     }
     
     func fetchHeroes(predicate: NSPredicate? = nil, completion: (Result<[PersistenceHeros]?, Error>) -> Void) {
@@ -66,10 +61,22 @@ class CoreDataManager {
             results.forEach { managedObject in
                 let managedObjectData = managedObject as NSManagedObject
                 context.delete(managedObjectData)
+                context.saveContext()
             }
         } catch {
             print("Delete Error")
         }
         
+    }
+}
+
+extension NSManagedObjectContext {
+    func saveContext() {
+        guard hasChanges else { return }
+        do {
+            try save()
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
     }
 }

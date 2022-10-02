@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="DragonBallAdvanced" customModuleProvider="target">
             <connections>
                 <outlet property="loginButton" destination="A6Q-lY-haC" id="rdf-1P-hJ5"/>
-                <outlet property="singUpButton" destination="BQ2-7g-kpa" id="Vl9-Ra-QSb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,30 +23,6 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fondo-login" translatesAutoresizingMaskIntoConstraints="NO" id="xIl-HU-Pgz">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQ2-7g-kpa">
-                    <rect key="frame" x="35" y="620" width="320" height="40"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="tintColor" systemColor="systemBackgroundColor"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="SIGN UP">
-                        <backgroundConfiguration key="background"/>
-                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
-                    </buttonConfiguration>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
-                            <real key="value" value="16"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" systemColor="systemOrangeColor"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="didSignUpTap:" destination="-1" eventType="touchUpInside" id="4sQ-nz-IjZ"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6Q-lY-haC">
                     <rect key="frame" x="35" y="550" width="320" height="40"/>
                     <color key="backgroundColor" systemColor="systemOrangeColor"/>
@@ -69,7 +45,7 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DragonBallLogo" translatesAutoresizingMaskIntoConstraints="NO" id="VUT-qQ-wMS">
-                    <rect key="frame" x="70" y="154" width="250" height="118"/>
+                    <rect key="frame" x="70" y="157" width="250" height="118"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="118" id="Zfc-5Z-ehc"/>
                     </constraints>
@@ -80,17 +56,13 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VUT-qQ-wMS" secondAttribute="trailing" constant="70" id="1sq-aW-nA4"/>
                 <constraint firstItem="xIl-HU-Pgz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3Cg-dD-Znk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BQ2-7g-kpa" secondAttribute="bottom" constant="150" id="3vQ-Ip-6sO"/>
                 <constraint firstItem="A6Q-lY-haC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="6Vt-C8-XrS"/>
-                <constraint firstItem="BQ2-7g-kpa" firstAttribute="top" secondItem="A6Q-lY-haC" secondAttribute="bottom" constant="30" id="6t2-37-hIf"/>
                 <constraint firstAttribute="trailing" secondItem="xIl-HU-Pgz" secondAttribute="trailing" id="Ara-xw-w7C"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="A6Q-lY-haC" secondAttribute="trailing" constant="35" id="HAe-O2-3NV"/>
                 <constraint firstItem="xIl-HU-Pgz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Sg9-SZ-5lq"/>
-                <constraint firstItem="BQ2-7g-kpa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="TEW-By-CE1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BQ2-7g-kpa" secondAttribute="trailing" constant="35" id="WE2-e9-R1c"/>
                 <constraint firstItem="VUT-qQ-wMS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="110" id="Xzd-c4-0Ny"/>
-                <constraint firstItem="BQ2-7g-kpa" firstAttribute="height" secondItem="A6Q-lY-haC" secondAttribute="height" id="fy5-VE-P8p"/>
                 <constraint firstAttribute="bottom" secondItem="xIl-HU-Pgz" secondAttribute="bottom" id="mWY-z8-GwP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="A6Q-lY-haC" secondAttribute="bottom" constant="220" id="sZl-La-Dc0"/>
                 <constraint firstItem="VUT-qQ-wMS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="t4e-f4-0ii"/>
                 <constraint firstItem="VUT-qQ-wMS" firstAttribute="centerX" secondItem="xIl-HU-Pgz" secondAttribute="centerX" id="v5C-03-ewv"/>
             </constraints>
