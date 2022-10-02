@@ -35,7 +35,8 @@ extension LoginViewModel: LoginViewModelProtocol {
             case .success(let token):
                 guard let token = token?.data(using: .utf8) else { return }
                 keyChainHelper.standard.save(token, service: "Token", account: "\(user)")
-                self?.checkForToken(account: "\(user)", service: "Token")
+                UserDefaultsHelper.saveItems(item: user, key: .user)
+                self?.checkForToken(account: user, service: "Token")
             case .failure(let error):
                 self?.onLoginFailure?("\(error)")
             }
@@ -43,7 +44,8 @@ extension LoginViewModel: LoginViewModelProtocol {
     }
     
     func checkForToken(account: String, service: String) {
-        guard let tokenData = keyChainHelper.standard.read(account: account, service: service),
+        guard let user = UserDefaultsHelper.getItems(key: .user) as? String else { return }
+        guard let tokenData = keyChainHelper.standard.read(account: user, service: service),
               let token = String(data: tokenData, encoding: .utf8) else { return }
         
         if !token.isEmpty {

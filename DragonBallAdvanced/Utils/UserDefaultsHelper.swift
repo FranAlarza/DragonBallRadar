@@ -9,6 +9,7 @@ import UIKit
 
 enum UserDefaultsKeys: String {
     case tutorial
+    case user
 }
 
 class UserDefaultsHelper {

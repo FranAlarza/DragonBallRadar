@@ -38,7 +38,10 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.checkForToken(account: "franalarza@gmail.com", service: "Token")
+        if let user = usernameTextField.text {
+            viewModel.checkForToken(account: user, service: "Token")
+        }
+        
     }
     
     // MARK: - IBACTIONS

@@ -76,12 +76,13 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchDragonBallData<T: Decodable>(from endpoint: String, requestBody: Body?, token: String, type: T.Type, completion: @escaping (Result<T?, NetworkError>) -> Void) {
+    func fetchDragonBallData<T: Decodable>(from endpoint: String, requestBody: Body?, token: String, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
         guard let request = request(endpoint: endpoint, token: token, body: requestBody) else { return }
         
         session.dataTask(with: request) { data, response, error in
-            guard error == nil else{
+            guard let data = data else {
+                completion(.failure(.dataError))
                 return
             }
             
@@ -91,9 +92,12 @@ class NetworkManager {
                 return
             }
             
-            guard let data else { return }
+            guard error == nil else{
+                completion(.failure(.requestError))
+                return
+            }
             
-            if let result = try? JSONDecoder().decode(type.self, from: data) {
+            if let result = try? JSONDecoder().decode(T.self, from: data) {
                 completion(.success(result))
             } else {
                 completion(.failure(.dataError))

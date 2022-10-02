@@ -46,10 +46,10 @@
 		26BA976328CB3562006EE79A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA976228CB3562006EE79A /* NetworkManager.swift */; };
 		26BA976628CB944D006EE79A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA976528CB944D006EE79A /* LoginViewModel.swift */; };
 		26BA976828CBA1E0006EE79A /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA976728CBA1E0006EE79A /* KeyChainHelper.swift */; };
+		26C032BF28EA33E300B0B609 /* heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C032BE28EA33E300B0B609 /* heroes.json */; };
 		26EA73AD28CA41E500256913 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EA73AB28CA41E500256913 /* LoginViewController.swift */; };
 		26EA73AE28CA41E500256913 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26EA73AC28CA41E500256913 /* LoginViewController.xib */; };
 		26EB5F4128CD5584002EF224 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB5F4028CD5584002EF224 /* Extension+String.swift */; };
-		26FDBDEF28E073B2000493DB /* KeyChainHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +98,6 @@
 		2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTest.swift; sourceTree = "<group>"; };
 		26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
-		26A503C428E207F5006B0103 /* heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heroes.json; sourceTree = "<group>"; };
 		26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		26A6D20D28CFB0A7003DD494 /* Extension+MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+MapView.swift"; sourceTree = "<group>"; };
 		26BA975B28CB2DA2006EE79A /* MapHeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHeroesViewController.swift; sourceTree = "<group>"; };
@@ -106,10 +105,10 @@
 		26BA976228CB3562006EE79A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		26BA976528CB944D006EE79A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		26BA976728CBA1E0006EE79A /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
+		26C032BE28EA33E300B0B609 /* heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heroes.json; sourceTree = "<group>"; };
 		26EA73AB28CA41E500256913 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		26EA73AC28CA41E500256913 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		26EB5F4028CD5584002EF224 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
-		26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,12 +193,11 @@
 		260562E228C765B800B2C119 /* DragonBallAdvancedTests */ = {
 			isa = PBXGroup;
 			children = (
-				26A503C328E207B6006B0103 /* JSON */,
 				26A503C228E2030F006B0103 /* Mocks */,
 				260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */,
-				26FDBDEE28E073B2000493DB /* KeyChainHelperTests.swift */,
 				26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */,
 				2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */,
+				26C032BE28EA33E300B0B609 /* heroes.json */,
 			);
 			path = DragonBallAdvancedTests;
 			sourceTree = "<group>";
@@ -356,14 +354,6 @@
 				26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		26A503C328E207B6006B0103 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				26A503C428E207F5006B0103 /* heroes.json */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		26BA975928CB2D22006EE79A /* Map */ = {
@@ -537,6 +527,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26C032BF28EA33E300B0B609 /* heroes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,7 +577,6 @@
 				26A503BF28E1EEDF006B0103 /* URLSessionMock.swift in Sources */,
 				260562E428C765B800B2C119 /* UserDefaultsHelperTests.swift in Sources */,
 				2693CD8128E8F97C007A9547 /* LoginViewModelTest.swift in Sources */,
-				26FDBDEF28E073B2000493DB /* KeyChainHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

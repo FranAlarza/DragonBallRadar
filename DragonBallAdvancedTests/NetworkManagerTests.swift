@@ -123,13 +123,13 @@ final class NetworkManagerTests: XCTestCase {
     
     // MARK: - FETCH DRAGON BALL DATA FUNCTION TESTS
     
-    func testWithCharacters() {
+    func testFetchCharactersSuccess() {
         let token = "Mock Token"
         var retrievedError: NetworkError?
         var retrievedHeroes: [Hero] = []
         // GIVEN
         urlSessionMock.data = getData(resource: "heroes")
-        urlSessionMock.response = HTTPURLResponse(url: URL(string: "http")!,
+        urlSessionMock.response = HTTPURLResponse(url: URL(string: "ht")!,
                                                   statusCode: 200,
                                                   httpVersion: nil,
                                                   headerFields: nil)
@@ -137,11 +137,10 @@ final class NetworkManagerTests: XCTestCase {
         
         sut.fetchDragonBallData(from: "http",
                                 requestBody: nil,
-                                token: token,
-                                type: [Hero].self) { result in
+                                token: token) { (result: Result<[Hero]?, NetworkError>) in
             switch result {
             case .success(let heroes):
-                retrievedHeroes = heroes!
+                retrievedHeroes = heroes ?? []
             case .failure(let error):
                 retrievedError = error
             }
@@ -149,7 +148,92 @@ final class NetworkManagerTests: XCTestCase {
         // THEN
         //XCTAssertNil(retrievedHeroes)
         XCTAssertEqual(retrievedHeroes.count, 2)
+        XCTAssertNil(retrievedError)
+    }
+    
+    func testFetchCharactersWithNoData() {
+        let token = "Mock Token"
+        var retrievedError: NetworkError?
+        var retrievedHeroes: [Hero] = []
+        // GIVEN
+        urlSessionMock.data = nil
+        urlSessionMock.response = HTTPURLResponse(url: URL(string: "ht")!,
+                                                  statusCode: 200,
+                                                  httpVersion: nil,
+                                                  headerFields: nil)
+        // WHEN
         
+        sut.fetchDragonBallData(from: "http",
+                                requestBody: nil,
+                                token: token) { (result: Result<[Hero]?, NetworkError>) in
+            switch result {
+            case .success(let heroes):
+                retrievedHeroes = heroes ?? []
+            case .failure(let error):
+                retrievedError = error
+            }
+        }
+        // THEN
+        //XCTAssertNil(retrievedHeroes)
+        XCTAssertEqual(retrievedHeroes.count, 0)
+        XCTAssertEqual(retrievedError, .dataError)
+    }
+    
+    func testFetchCharactersWithResponseError() {
+        let token = "Mock Token"
+        var retrievedError: NetworkError?
+        var retrievedHeroes: [Hero] = []
+        // GIVEN
+        urlSessionMock.data = getData(resource: "heroes")
+        urlSessionMock.response = HTTPURLResponse(url: URL(string: "ht")!,
+                                                  statusCode: 404,
+                                                  httpVersion: nil,
+                                                  headerFields: nil)
+        // WHEN
+        
+        sut.fetchDragonBallData(from: "http",
+                                requestBody: nil,
+                                token: token) { (result: Result<[Hero]?, NetworkError>) in
+            switch result {
+            case .success(let heroes):
+                retrievedHeroes = heroes ?? []
+            case .failure(let error):
+                retrievedError = error
+            }
+        }
+        // THEN
+        //XCTAssertNil(retrievedHeroes)
+        XCTAssertEqual(retrievedHeroes.count, 0)
+        XCTAssertEqual(retrievedError, .responseError)
+    }
+    
+    func testFetchCharactersWithError() {
+        let token = "Mock Token"
+        var retrievedError: NetworkError?
+        var retrievedHeroes: [Hero] = []
+        // GIVEN
+        urlSessionMock.data = getData(resource: "heroes")
+        urlSessionMock.response = HTTPURLResponse(url: URL(string: "ht")!,
+                                                  statusCode: 200,
+                                                  httpVersion: nil,
+                                                  headerFields: nil)
+        urlSessionMock.error = MockError.mockError
+        // WHEN
+        
+        sut.fetchDragonBallData(from: "http",
+                                requestBody: nil,
+                                token: token) { (result: Result<[Hero]?, NetworkError>) in
+            switch result {
+            case .success(let heroes):
+                retrievedHeroes = heroes ?? []
+            case .failure(let error):
+                retrievedError = error
+            }
+        }
+        // THEN
+        //XCTAssertNil(retrievedHeroes)
+        XCTAssertEqual(retrievedHeroes.count, 0)
+        XCTAssertEqual(retrievedError, .requestError)
     }
     
 }
