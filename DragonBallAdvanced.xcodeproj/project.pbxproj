@@ -36,7 +36,6 @@
 		2692E36428D5390D00D98C1C /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692E36328D5390C00D98C1C /* CustomView.swift */; };
 		2692F28928D25027001B843A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692F28728D25026001B843A /* DetailViewController.swift */; };
 		2692F28A28D25027001B843A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2692F28828D25027001B843A /* DetailViewController.xib */; };
-		2693CD8128E8F97C007A9547 /* LoginViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */; };
 		26A503BF28E1EEDF006B0103 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */; };
 		26A503C128E1F40D006B0103 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */; };
 		26A6D20C28CF73CC003DD494 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */; };
@@ -95,7 +94,6 @@
 		2692E36328D5390C00D98C1C /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		2692F28728D25026001B843A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2692F28828D25027001B843A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
-		2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTest.swift; sourceTree = "<group>"; };
 		26A503BE28E1EEDF006B0103 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		26A6D20B28CF73CC003DD494 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -180,10 +178,10 @@
 			children = (
 				260562DA28C765B800B2C119 /* Info.plist */,
 				260562D728C765B800B2C119 /* LaunchScreen.storyboard */,
+				260562FC28C7673700B2C119 /* App */,
 				2604DC9528C809C100904694 /* Extensions */,
 				260562FD28C7674900B2C119 /* Resources */,
 				26BA976128CB3525006EE79A /* Utils */,
-				260562FC28C7673700B2C119 /* App */,
 				260562FE28C767CB00B2C119 /* UI */,
 				260562D228C765B400B2C119 /* DragonBallAdvanced.xcdatamodeld */,
 			);
@@ -196,7 +194,6 @@
 				26A503C228E2030F006B0103 /* Mocks */,
 				260562E328C765B800B2C119 /* UserDefaultsHelperTests.swift */,
 				26A503C028E1F40D006B0103 /* NetworkManagerTests.swift */,
-				2693CD8028E8F97C007A9547 /* LoginViewModelTest.swift */,
 				26C032BE28EA33E300B0B609 /* heroes.json */,
 			);
 			path = DragonBallAdvancedTests;
@@ -576,7 +573,6 @@
 				26A503C128E1F40D006B0103 /* NetworkManagerTests.swift in Sources */,
 				26A503BF28E1EEDF006B0103 /* URLSessionMock.swift in Sources */,
 				260562E428C765B800B2C119 /* UserDefaultsHelperTests.swift in Sources */,
-				2693CD8128E8F97C007A9547 /* LoginViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

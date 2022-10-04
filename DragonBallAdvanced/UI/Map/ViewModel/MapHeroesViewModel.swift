@@ -51,47 +51,56 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
     
     // Call the API, receive the heroes and their locations and save them in Core Data
     func getCharacters() {
+        fetchHeroesFromCoreData()
         let token = getPersistenceToken()
         
-        networkManager?.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
-                                            requestBody: Body(name: ""),
-                                            token: token, completion: { [weak self] (result: Result<[Hero]?, NetworkError>) in
-            switch result {
-            case .success(let heroesResponse):
-                var heroes: [Hero] = heroesResponse ?? []
-                heroes.enumerated().forEach { index, heroCoordenate in
-                    self?.networkManager?.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
-                                                              requestBody: Body(id: heroCoordenate.id),
-                                                              token: token) { (result: Result<[Geolocation]?, NetworkError>) in
-                        switch result {
-                        case .success(let geolocations):
-                            guard let geolocations = geolocations else { return }
-                            let firstCordinate = geolocations.first
-                            
-                            if geolocations.isEmpty {
-                                DispatchQueue.main.async {
-                                    CoreDataManager.shared.saveHeroes(with: heroes[index])
+        guard let syncDate = UserDefaultsHelper.getSyncDate(key: .syncDate),
+              syncDate.addingTimeInterval(1) > Date(),
+              !persistanceHeroes.isEmpty else {
+            networkManager?.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
+                                                requestBody: Body(name: ""),
+                                                token: token, completion: { [weak self] (result: Result<[Hero]?, NetworkError>) in
+                switch result {
+                case .success(let heroesResponse):
+                    print("Heroes desde red")
+                    var heroes: [Hero] = heroesResponse ?? []
+                    heroes.enumerated().forEach { index, heroCoordenate in
+                        self?.networkManager?.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
+                                                                  requestBody: Body(id: heroCoordenate.id),
+                                                                  token: token) { (result: Result<[Geolocation]?, NetworkError>) in
+                            switch result {
+                            case .success(let geolocations):
+                                guard let geolocations = geolocations else { return }
+                                let firstCordinate = geolocations.first
+                                
+                                if geolocations.isEmpty {
+                                    DispatchQueue.main.async {
+                                        CoreDataManager.shared.saveHeroes(with: heroes[index])
+                                        UserDefaultsHelper.saveSyncDate(key: .syncDate)
+                                    }
+                                } else {
+                                    heroes[index].latitud = Double(firstCordinate?.latitud ?? "0.0")
+                                    heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
+                                    DispatchQueue.main.async {
+                                        CoreDataManager.shared.saveHeroes(with: heroes[index])
+                                        UserDefaultsHelper.saveSyncDate(key: .syncDate)
+                                        NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
+                                    }
                                 }
-                            } else {
-                                heroes[index].latitud = Double(firstCordinate?.latitud ?? "0.0")
-                                heroes[index].longitud = Double(firstCordinate?.longitud ?? "0.0")
-                                DispatchQueue.main.async {
-                                    CoreDataManager.shared.saveHeroes(with: heroes[index])
-                                    NotificationCenter.default.post(name: .heroesStoredInCoreData, object: self)
-                                }
+                                
+                            case .failure(_):
+                                print("\(NetworkError.geolocationsError)")
                             }
-                            
-                        case .failure(_):
-                            print("\(NetworkError.geolocationsError)")
                         }
                     }
+                case .failure(_):
+                    print("\(NetworkError.heroesError)")
                 }
-            case .failure(_):
-                print("\(NetworkError.heroesError)")
-            }
-            
-        })
-        return
+                
+            })
+            return
+        }
+        
     }
     
     func putHeroInMap() -> [CustomMKAnnotation] {

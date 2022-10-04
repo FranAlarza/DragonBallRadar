@@ -10,6 +10,7 @@ import UIKit
 enum UserDefaultsKeys: String {
     case tutorial
     case user
+    case syncDate
 }
 
 class UserDefaultsHelper {
@@ -25,5 +26,13 @@ class UserDefaultsHelper {
     
     static func deleteItem(key: UserDefaultsKeys) {
         userDefaults.removeObject(forKey: key.rawValue)
+    }
+    
+    static func saveSyncDate(key: UserDefaultsKeys) {
+        userDefaults.set(Date(), forKey: key.rawValue)
+    }
+    
+    static func getSyncDate(key: UserDefaultsKeys) -> Date? {
+        userDefaults.value(forKey: key.rawValue) as? Date
     }
 }
