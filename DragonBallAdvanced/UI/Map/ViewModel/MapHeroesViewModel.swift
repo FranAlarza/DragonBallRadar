@@ -62,7 +62,6 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
                                                 token: token, completion: { [weak self] (result: Result<[Hero]?, NetworkError>) in
                 switch result {
                 case .success(let heroesResponse):
-                    print("Heroes desde red")
                     var heroes: [Hero] = heroesResponse ?? []
                     heroes.enumerated().forEach { index, heroCoordenate in
                         self?.networkManager?.fetchDragonBallData(from: Endpoint.geolocationEndpoint.rawValue,
@@ -120,7 +119,6 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
         CoreDataManager.shared.fetchHeroes { result in
             switch result {
             case .success(let heroes):
-                print("heroes desde coreData")
                 self.persistanceHeroes = heroes ?? []
                 onSuccess?()
             case .failure(let error):
