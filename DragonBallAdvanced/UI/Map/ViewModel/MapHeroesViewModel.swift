@@ -55,7 +55,7 @@ extension MapHeroesViewModel: MapHeroesViewModelProtocol {
         let token = getPersistenceToken()
         
         guard let syncDate = UserDefaultsHelper.getSyncDate(key: .syncDate),
-              syncDate.addingTimeInterval(1) > Date(),
+              syncDate.addingTimeInterval(86400) > Date(),
               !persistanceHeroes.isEmpty else {
             networkManager?.fetchDragonBallData(from: Endpoint.getHeroesEndpoint.rawValue,
                                                 requestBody: Body(name: ""),
